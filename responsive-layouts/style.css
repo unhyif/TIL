@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.hero {
+  border: 1px solid black;
+  margin: 0 auto;
+  padding: 1em;
+  /* 최소 width 값 설정은 지양 */
+  width: min(600px, 80%); /* 내부 calc 불필요 */
+  /* width: 80%;
+  max-width: 600px */
+}
+
+@supports (font-size: clamp(1px, 1%, 2px)) {
+  p {
+    font-size: clamp(1rem, 3vw, 2rem);
+  }
+}
