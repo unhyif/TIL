@@ -1,0 +1,19 @@
+.product {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid lightgray;
+  border-radius: 2em;
+  padding: 1.5em;
+}
+
+.image {
+  align-self: center;
+  width: min(100%, 300px);
+}
+
+.name {
+  align-self: center;
+  font-size: 24px;
+  margin: 0.5em 0;
+  text-align: center;
+}
