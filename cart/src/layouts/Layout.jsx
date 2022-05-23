@@ -12,7 +12,7 @@ const Layout = () => (
       <Form.Control
         type="search"
         placeholder="Search for a product"
-        style={{ width: 500 }}
+        style={{ width: '30%', maxWidth: 500 }}
       />
       <DropdownButton
         id="dropdown-basic-button"
