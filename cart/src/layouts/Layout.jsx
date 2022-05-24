@@ -6,7 +6,7 @@ import { FaShoppingCart } from 'react-icons/fa';
 const Layout = () => (
   <>
     <Navbar bg="dark" className="d-flex justify-content-between py-3 px-4">
-      <Link to="/" style={{ fontSize: '1.5em', color: 'white' }}>
+      <Link to="/" style={{ fontSize: '28px', color: 'white' }}>
         Shopping cart
       </Link>
       <Form.Control

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useShopContext } from 'contexts/ShopContext';
 import Product from 'components/Product/Product';
-import styles from './ProductList.module.scss';
+import { Row } from 'react-bootstrap';
 
 const ProductList = () => {
   const {
@@ -9,11 +9,11 @@ const ProductList = () => {
   } = useShopContext();
 
   return (
-    <ul className={styles.products}>
+    <Row>
       {products.map(product => (
         <Product key={product.id} product={product} />
       ))}
-    </ul>
+    </Row>
   );
 };
 

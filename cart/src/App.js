@@ -10,19 +10,19 @@ const Error = lazy(() => import('routes/Error/Error'));
 
 const App = () => (
   <BrowserRouter>
-    <ErrorBoundary>
-      <Suspense fallback={<div />}>
-        <ShopContextProvider>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Home />} />
-              <Route path="cart" element={<Cart />} />
-              <Route path="*" element={<Error />} />
-            </Route>
-          </Routes>
-        </ShopContextProvider>
-      </Suspense>
-    </ErrorBoundary>
+    {/* <ErrorBoundary> */}
+    <Suspense fallback={<div />}>
+      <ShopContextProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="*" element={<Error />} />
+          </Route>
+        </Routes>
+      </ShopContextProvider>
+    </Suspense>
+    {/* </ErrorBoundary> */}
   </BrowserRouter>
 );
 

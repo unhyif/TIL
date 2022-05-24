@@ -9,9 +9,9 @@ const cn = classNames.bind(styles);
 const Home = () => (
   <main className={cn('home')}>
     <Filter />
-    <section className={cn('product-list')}>
+    <ul className={cn('product-list', 'm-0')}>
       <ProductList />
-    </section>
+    </ul>
   </main>
 );
 

@@ -1,8 +1,8 @@
 .home {
-  padding: 2em 0;
   display: flex;
 }
 
 .product-list {
-  width: 60%;
+  flex-grow: 1;
+  padding: 1em max(5%, 1em);
 }
