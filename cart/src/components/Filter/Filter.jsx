@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import { useShopContext } from 'contexts/ShopContext';
 import Rating from 'components/Rating/Rating';
 import { Button, Form } from 'react-bootstrap';
 import styles from './Filter.module.scss';
@@ -9,10 +8,6 @@ const cn = classNames.bind(styles);
 
 const Filter = () => {
   const [rating, setRating] = useState(0);
-  // const {
-  //   state: { products },
-  //   dispatch,
-  // } = useShopContext();
 
   const handleRatingClick = rating => setRating(rating);
   const handleClearClick = () => setRating(0);
