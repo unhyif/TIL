@@ -13,7 +13,7 @@ const Product = ({ product }) => {
   } = useShopContext();
 
   return (
-    <Col xs={4} className={cn('p-4')}>
+    <Col xs={4} className={cn('product-container')}>
       <li className={cn('product')}>
         <img className={cn('image')} src={product.image} alt={product.name} />
 

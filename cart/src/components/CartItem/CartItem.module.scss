@@ -1,0 +1,17 @@
+.body {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.image {
+  width: 100px;
+  border-radius: 0.5em;
+}
+
+.detail {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
