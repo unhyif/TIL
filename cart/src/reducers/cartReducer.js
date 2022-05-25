@@ -12,27 +12,11 @@ export function cartReducer(state, action) {
         cart: state.cart.filter(item => item.id !== payload.id),
       };
 
-    case 'increment':
+    case 'CHANGE_CART_QUANTITY':
       return {
         ...state,
-        cart: state.cart.map(item =>
-          item.id === payload.id
-            ? { ...payload, quantity: payload.quantity + 1 }
-            : item
-        ),
+        cart: state.cart.map(item => (item.id === payload.id ? payload : item)),
       };
-
-    case 'decrement': {
-      if (!payload.quantity) return;
-      return {
-        ...state,
-        cart: state.cart.map(item =>
-          item.id === payload.id
-            ? { ...payload, quantity: payload.quantity - 1 }
-            : item
-        ),
-      };
-    }
 
     default:
       return state;
