@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useFilterContext } from 'contexts/FilterContext';
 import classNames from 'classnames/bind';
 import Rating from 'components/Rating/Rating';
 import { Button, Form } from 'react-bootstrap';
@@ -8,9 +9,21 @@ const cn = classNames.bind(styles);
 
 const Filter = () => {
   const [rating, setRating] = useState(0);
+  const { dispatch } = useFilterContext();
+
+  const handleStockChange = () => dispatch({ type: 'OUT_OF_STOCK' });
+  const handleDeliveryChange = () => dispatch({ type: 'FAST_DELIVERY' });
 
   const handleRatingClick = rating => setRating(rating);
-  const handleClearClick = () => setRating(0);
+
+  const clearFilters = () => {
+    setRating(0);
+    dispatch({ type: 'CLEAR' });
+  };
+
+  useEffect(() => {
+    return () => dispatch({ type: 'CLEAR' });
+  }, []);
 
   return (
     <div className={cn('filter', 'p-4')}>
@@ -24,12 +37,14 @@ const Filter = () => {
           name="group1"
           id="3"
           label="Include Out Of Stock"
+          onChange={handleStockChange}
         />
         <Form.Check
           type="checkbox"
           name="group1"
           id="4"
           label="Fast Delivery Only"
+          onChange={handleDeliveryChange}
         />
         <div>
           <span>Rating: </span>
@@ -40,7 +55,7 @@ const Filter = () => {
       <Button
         variant="light"
         className={cn('clear-btn', 'px-4')}
-        onClick={handleClearClick}
+        onClick={clearFilters}
       >
         Clear Filters
       </Button>

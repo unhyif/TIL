@@ -2,7 +2,7 @@ import React, { useContext, useReducer } from 'react';
 import { cartReducer } from 'reducers/cartReducer';
 import { faker } from '@faker-js/faker';
 
-const ShopContext = React.createContext([]);
+const ShopContext = React.createContext({});
 
 const ShopContextProvider = ({ children }) => {
   const products = [...Array(20)].map(value => ({
