@@ -1,9 +1,9 @@
-.home {
+.cart {
   display: flex;
   min-height: 100vh;
 }
 
-.product-list {
+.items {
   flex-grow: 1;
-  padding: 1em max(10%, 1em);
+  padding: 3em max(10%, 1em);
 }

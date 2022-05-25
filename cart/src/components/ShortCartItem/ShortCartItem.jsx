@@ -2,11 +2,11 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import { Card } from 'react-bootstrap';
 import { AiFillDelete } from 'react-icons/ai';
-import styles from './CartItem.module.scss';
+import styles from './ShortCartItem.module.scss';
 
 const cn = classNames.bind(styles);
 
-const CartItem = ({ item, dispatch }) => (
+const ShortCartItem = ({ item, dispatch }) => (
   <Card style={{ width: '15rem' }}>
     <Card.Header>{item.name}</Card.Header>
     <Card.Body className={cn('body')}>
@@ -23,4 +23,4 @@ const CartItem = ({ item, dispatch }) => (
   </Card>
 );
 
-export default CartItem;
+export default ShortCartItem;

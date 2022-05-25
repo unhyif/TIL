@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link, useNavigate, Outlet } from 'react-router-dom';
+import classNames from 'classnames/bind';
 import { useShopContext } from 'contexts/ShopContext';
-import CartItem from 'components/CartItem/CartItem';
+import CartItem from 'components/ShortCartItem/ShortCartItem';
 import { Navbar, Form, DropdownButton, Button } from 'react-bootstrap';
 import { FaShoppingCart } from 'react-icons/fa';
+import styles from './Layout.module.scss';
+
+const cn = classNames.bind(styles);
 
 const Layout = () => {
   const {
@@ -23,8 +27,8 @@ const Layout = () => {
 
         <Form.Control
           type="search"
+          className={cn('search')}
           placeholder="Search for a product"
-          style={{ width: '30%', maxWidth: 500 }}
         />
 
         <DropdownButton
@@ -38,10 +42,7 @@ const Layout = () => {
           variant="success"
           align="end"
         >
-          <div
-            className="d-flex flex-column align-items-center"
-            style={{ gap: '1em' }}
-          >
+          <div className={cn('d-flex flex-column align-items-center', 'cart')}>
             {cart.length ? (
               <>
                 {cart.map(item => (
