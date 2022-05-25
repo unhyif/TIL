@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useFilterContext } from 'contexts/FilterContext';
 import classNames from 'classnames/bind';
 import Rating from 'components/Rating/Rating';
@@ -8,21 +8,25 @@ import styles from './Filter.module.scss';
 const cn = classNames.bind(styles);
 
 const Filter = () => {
-  const [rating, setRating] = useState(0);
-  const { dispatch } = useFilterContext();
+  const {
+    filters: { byAscendingPrice, byStock, byFastDelivery, rating, searchQuery },
+    dispatch,
+  } = useFilterContext();
 
-  const handleStockChange = () => dispatch({ type: 'OUT_OF_STOCK' });
-  const handleDeliveryChange = () => dispatch({ type: 'FAST_DELIVERY' });
+  const handleAscendingChange = () =>
+    dispatch({ type: 'ORDER_BY_ASCENDING_PRICE', payload: true });
+  const handleDescendingChange = () =>
+    dispatch({ type: 'ORDER_BY_ASCENDING_PRICE', payload: false });
 
-  const handleRatingClick = rating => setRating(rating);
+  const handleStockChange = () => dispatch({ type: 'FILTER_BY_STOCK' });
+  const handleDeliveryChange = () => dispatch({ type: 'FILTER_BY_DELIVERY' });
+  const handleRatingClick = rating =>
+    dispatch({ type: 'FILTER_BY_RATING', payload: rating });
 
-  const clearFilters = () => {
-    setRating(0);
-    dispatch({ type: 'CLEAR' });
-  };
-
+  const clearFilters = () => dispatch({ type: 'CLEAR_FILTERS' });
   useEffect(() => {
-    return () => dispatch({ type: 'CLEAR' });
+    searchQuery && dispatch({ type: 'FILTER_BY_SEARCH', payload: '' });
+    return clearFilters;
   }, []);
 
   return (
@@ -30,14 +34,29 @@ const Filter = () => {
       <h2 className={cn('title')}>Filter Products</h2>
 
       <div className={cn('filters')}>
-        <Form.Check type="radio" name="group1" id="1" label="Ascending" />
-        <Form.Check type="radio" name="group1" id="2" label="Descending" />
+        <Form.Check
+          type="radio"
+          name="group1"
+          id="1"
+          label="Ascending"
+          onChange={handleAscendingChange}
+          checked={byAscendingPrice}
+        />
+        <Form.Check
+          type="radio"
+          name="group1"
+          id="2"
+          label="Descending"
+          onChange={handleDescendingChange}
+          checked={!byAscendingPrice}
+        />
         <Form.Check
           type="checkbox"
           name="group1"
           id="3"
           label="Include Out Of Stock"
           onChange={handleStockChange}
+          checked={byStock}
         />
         <Form.Check
           type="checkbox"
@@ -45,6 +64,7 @@ const Filter = () => {
           id="4"
           label="Fast Delivery Only"
           onChange={handleDeliveryChange}
+          checked={byFastDelivery}
         />
         <div>
           <span>Rating: </span>

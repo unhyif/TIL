@@ -5,10 +5,11 @@ const FilterContext = React.createContext({});
 
 const FilterContextProvider = ({ children }) => {
   const filters = {
-    ascending: true,
-    inStock: true,
-    fastDelivery: false,
+    byAscendingPrice: true,
+    byStock: false,
+    byFastDelivery: false,
     rating: 0,
+    searchQuery: '',
   };
   const [state, dispatch] = useReducer(filterReducer, filters);
 

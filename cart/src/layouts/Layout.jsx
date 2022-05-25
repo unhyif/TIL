@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, useNavigate, Outlet } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import { useShopContext } from 'contexts/ShopContext';
+import { useFilterContext } from 'contexts/FilterContext';
 import CartItem from 'components/ShortCartItem/ShortCartItem';
 import { Navbar, Form, DropdownButton, Button } from 'react-bootstrap';
 import { FaShoppingCart } from 'react-icons/fa';
@@ -10,6 +11,14 @@ import styles from './Layout.module.scss';
 const cn = classNames.bind(styles);
 
 const Layout = () => {
+  const {
+    filters: { searchQuery },
+    dispatch: filterDispatch,
+  } = useFilterContext();
+
+  const handleSearch = e =>
+    filterDispatch({ type: 'FILTER_BY_SEARCH', payload: e.target.value });
+
   const {
     state: { cart },
     dispatch,
@@ -27,8 +36,10 @@ const Layout = () => {
 
         <Form.Control
           type="search"
-          className={cn('search')}
+          className={cn('search', 'text-center')}
           placeholder="Search for a product"
+          value={searchQuery}
+          onChange={handleSearch}
         />
 
         <DropdownButton

@@ -13,8 +13,8 @@ const Product = ({ product }) => {
   } = useShopContext();
 
   return (
-    <Col xs={4} className={cn('product-container')}>
-      <li className={cn('product')}>
+    <Col xs={12} md={6} lg={4} className={cn('product-container')}>
+      <li className={cn('product', 'mx-auto')}>
         <img className={cn('image')} src={product.image} alt={product.name} />
 
         <h3 className={cn('name')}>{product.name}</h3>
