@@ -1,0 +1,16 @@
+.container {
+  width: min(80%, 1000px);
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  width: 100%; /* flex items have same width */
+}
+
+.col + .col {
+  margin-left: 3em; /* gap: 3em */
+}
