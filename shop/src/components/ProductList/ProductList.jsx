@@ -22,8 +22,8 @@ const ProductList = () => {
       : products;
 
     result = byAscendingPrice
-      ? result.sort((a, b) => a.price - b.price)
-      : result.sort((a, b) => b.price - a.price);
+      ? [...result].sort((a, b) => a.price - b.price)
+      : [...result].sort((a, b) => b.price - a.price);
 
     result = byStock ? result : result.filter(product => product.inStock);
 
