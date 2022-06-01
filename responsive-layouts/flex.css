@@ -1,3 +1,8 @@
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 img {
   max-width: 100%;
   /* align-self: flex-start */
@@ -26,12 +31,18 @@ header .row {
 
 nav {
   flex-grow: 1;
+  display: flex;
 }
 
 .nav__list {
   display: flex;
 }
 
+.nav__list--primary {
+  margin: 0 auto;
+}
+
+/* 
 .nav__item--right {
   margin-left: auto;
-}
+} */
