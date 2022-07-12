@@ -40,20 +40,28 @@ function printSomething2<V>(a: V[]) {
   return a[0];
 }
 
+printSomething2([true]);
+
 type Person<T, M> = {
   name: string;
   info: T;
   secondInfo: M;
 };
 
-const j: Person<boolean, string> = {
+const j1 = {
+  name: "j",
+  info: 20,
+  secondInfo: true,
+};
+
+const j2: Person<boolean, string> = {
   name: "j",
   info: true,
   secondInfo: "h",
 };
 
 type jPerson = Person<boolean, string>;
-const j2: jPerson = {
+const j3: jPerson = {
   name: "j",
   info: true,
   secondInfo: "h",
