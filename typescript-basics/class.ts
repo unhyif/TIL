@@ -1,3 +1,4 @@
+// Abstract class: 상속받는 자식 클래스가 가질 property와 메소드를 지정함. 인스턴스 생성 불가능. JS 컴파일 시 일반 클래스로 변함
 abstract class Person {
   constructor(
     private firstName: string,
@@ -47,10 +48,18 @@ class Dict {
     if (!this.words[term]) return;
     delete this.words[term];
   }
+
+  // 기존 JS 기능
+  static welcome() {
+    console.log("I'm a dictionary");
+  }
 }
 
 class Word {
-  constructor(public term: string, public definition: string) {}
+  constructor(
+    public readonly term: string,
+    public readonly definition: string
+  ) {}
 }
 
 const dict = new Dict();
