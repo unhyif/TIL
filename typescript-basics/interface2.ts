@@ -8,7 +8,7 @@ class Player extends Person {
   getFullName() {
     return `${this.firstName} ${this.lastName}`;
   }
-  sayHi(name) {
+  sayHi(name: string) {
     return `Hi ${name}, I'm ${this.getFullName()}`;
   }
 }
@@ -33,7 +33,7 @@ class Player2 implements Life, Person2 {
   getFullName() {
     return `${this.firstName} ${this.lastName}`;
   }
-  sayHi(name) {
+  sayHi(name: string) {
     return `Hi ${name}, I'm ${this.getFullName()}`;
   }
 }
