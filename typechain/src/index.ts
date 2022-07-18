@@ -24,3 +24,31 @@ class Block implements BlockShape {
     return crypto.createHash("sha256").update(hash).digest("hex");
   }
 }
+
+class Blockchain {
+  private blocks: Block[];
+  constructor() {
+    this.blocks = [];
+  }
+
+  private getPrevHash() {
+    return !this.blocks.length ? "" : this.blocks[this.blocks.length - 1].hash;
+  }
+
+  addBlock(data: string) {
+    const block = new Block(this.getPrevHash(), this.blocks.length + 1, data);
+    this.blocks.push(block);
+  }
+
+  getBlocks() {
+    return [...this.blocks];
+  }
+}
+
+const blockchain = new Blockchain();
+
+blockchain.addBlock("First");
+blockchain.addBlock("Second");
+blockchain.addBlock("Third");
+
+console.log(blockchain.getBlocks());
