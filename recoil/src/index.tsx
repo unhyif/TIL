@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Canvas from 'Canvas';
@@ -9,24 +8,22 @@ import { Atom } from 'examples/Atom';
 import { Selector } from 'examples/Selector';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <ChakraProvider>
-        <Router>
-          <Switch>
-            <Route path="/examples/atom">
-              <Atom />
-            </Route>
-            <Route path="/examples/selector">
-              <Selector />
-            </Route>
-            <Route>
-              <Canvas />
-            </Route>
-          </Switch>
-        </Router>
-      </ChakraProvider>
-    </RecoilRoot>
-  </React.StrictMode>,
+  <RecoilRoot>
+    <ChakraProvider>
+      <Router>
+        <Switch>
+          <Route path="/examples/atom">
+            <Atom />
+          </Route>
+          <Route path="/examples/selector">
+            <Selector />
+          </Route>
+          <Route>
+            <Canvas />
+          </Route>
+        </Switch>
+      </Router>
+    </ChakraProvider>
+  </RecoilRoot>,
   document.getElementById('root')
 );
