@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { Atom } from 'examples/Atom';
 import { Selector } from 'examples/Selector';
+import { Async } from 'examples/Async';
 
 ReactDOM.render(
   <RecoilRoot>
@@ -17,6 +18,9 @@ ReactDOM.render(
           </Route>
           <Route path="/examples/selector">
             <Selector />
+          </Route>
+          <Route path="/examples/async">
+            <Async />
           </Route>
           <Route>
             <Canvas />
