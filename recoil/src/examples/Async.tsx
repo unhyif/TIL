@@ -1,29 +1,24 @@
 import { Container, Heading, Text } from '@chakra-ui/layout';
 import { Select } from '@chakra-ui/select';
-import { Suspense } from 'react';
-import { atom, selector, useRecoilState, useRecoilValue } from 'recoil';
+import { Suspense, useState } from 'react';
+import {
+  atom,
+  selector,
+  selectorFamily,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil';
 
-const userIdState = atom<number | undefined>({
-  key: 'userId',
-  default: undefined,
-});
-
-const userState = selector({
+const userState = selectorFamily({
   key: 'user',
-  get: async ({ get }) => {
-    // Same input에 대해 selector의 결과를 캐싱함
-    const userId = get(userIdState);
-    if (!userId) return;
-
-    return await fetch(
-      `https://jsonplaceholder.typicode.com/users/${userId}`
-    ).then(res => res.json());
-  },
+  get: (userId: number) => async () =>
+    await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`).then(
+      res => res.json()
+    ),
 });
 
-const UserData = () => {
-  const user = useRecoilValue(userState);
-  if (!user) return null;
+const UserData = ({ userId }: { userId: number }) => {
+  const user = useRecoilValue(userState(userId));
   return (
     <div>
       <Heading as="h2" size="md" mb={1}>
@@ -40,7 +35,7 @@ const UserData = () => {
 };
 
 export const Async = () => {
-  const [userId, setUserId] = useRecoilState(userIdState);
+  const [userId, setUserId] = useState<number | undefined>(undefined);
   return (
     <Container py={10}>
       <Heading as="h1" mb={4}>
@@ -62,9 +57,11 @@ export const Async = () => {
         <option value="2">User 2</option>
         <option value="3">User 3</option>
       </Select>
-      <Suspense fallback={<div>Loading...</div>}>
-        <UserData />
-      </Suspense>
+      {userId && (
+        <Suspense fallback={<div>Loading...</div>}>
+          <UserData userId={userId} />
+        </Suspense>
+      )}
     </Container>
   );
 };
